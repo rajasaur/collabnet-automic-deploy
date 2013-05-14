@@ -1,0 +1,71 @@
+<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define" xmlns:l="/lib/layout"
+        xmlns:t="/lib/hudson" xmlns:f="/lib/form" xmlns:c="/hudson/plugins/collabnet/tags">
+
+  <f:entry title="Server" field="server">
+    <f:textbox />
+  </f:entry>
+
+  <f:entry title="Client ID" field="clientId">
+      <f:textbox />
+  </f:entry>
+
+  <f:entry title="User" field="user">
+      <f:textbox />
+  </f:entry>
+
+  <f:entry title="Department" field="department">
+      <f:textbox />
+  </f:entry>
+
+  <f:entry title="Password" field="password">
+      <f:password />
+  </f:entry>
+
+  <f:entry title="UC4 Package Name" field="packageName">
+    <f:textbox />
+  </f:entry>
+
+  <f:entry title="UC4 Application Name" field="applicationName">
+    <f:textbox />
+  </f:entry>
+
+
+  <f:entry title="Components" field="components">
+     <f:repeatable field="components" var="comp" items="${instance.components}" minimum="1">
+        <table width="100%">
+            <f:entry title="Name">
+                <f:textbox field="name" />
+            </f:entry>
+            <f:entry title="Path">
+                 <f:textbox field="path" />
+            </f:entry>
+            <f:entry title="Source Code Link">
+                <f:textbox field="codeLink" />
+            </f:entry>
+
+            <f:entry title="Project">
+                <f:select field="project"/>
+            </f:entry>
+
+            <f:entry title="">
+                <div align="right">
+                    <f:repeatableDeleteButton />
+                </div>
+            </f:entry>
+        </table>
+     </f:repeatable>
+  </f:entry>
+
+  <f:entry title="Package Owner" field="owner">
+    <f:textbox />
+  </f:entry>
+
+  <f:entry title="Folder Name" field="folderName">
+      <f:textbox />
+  </f:entry>
+
+  <f:entry title="Package Type" field="packageType">
+      <f:textbox />
+  </f:entry>
+
+</j:jelly>

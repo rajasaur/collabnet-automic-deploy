@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.jenkins-ci.plugins</groupId>
+        <artifactId>plugin</artifactId>
+        <version>1.397</version>
+    </parent>
+
+    <artifactId>collabnet-uc4-deploy</artifactId>
+    <version>1.0</version>
+    <name>Collabnet UC4 Deploy Plugin</name>
+    <description>Plugin to do continuous deployment with UC4 triggered by Collabnet Teamforge commits</description>
+    <packaging>hpi</packaging>
+
+    <developers>
+        <developer>
+            <id>rajasaur</id>
+            <name>Raja Venkataraman</name>
+            <email>raja@collab.net</email>
+        </developer>
+    </developers>
+
+    <repositories>
+        <repository>
+            <id>depend-libs</id>
+            <url>file:${project.basedir}/lib</url>
+        </repository>
+    </repositories>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.jenkins-ci.tools</groupId>
+                <artifactId>maven-hpi-plugin</artifactId>
+                <version>1.63</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <!-- Because of ClassLoading issues -->
+                    <warSourceExcludes>
+                        **/commons-logging*.jar
+                    </warSourceExcludes>
+                    <pluginFirstClassLoader>true</pluginFirstClassLoader>
+                </configuration>
+
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.jenkins-ci.plugins</groupId>
+            <artifactId>collabnet</artifactId>
+            <version>1.1.6</version>
+        </dependency>
+        <dependency>
+            <groupId>com.collabnet.ce</groupId>
+            <artifactId>collabnetapp</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/classes.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.axis</groupId>
+            <artifactId>axis</artifactId>
+            <version>1.4</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.axis</groupId>
+            <artifactId>axis-jaxrpc</artifactId>
+            <version>1.4</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.axis</groupId>
+            <artifactId>axis-saaj</artifactId>
+            <version>1.4</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-httpclient</groupId>
+            <artifactId>commons-httpclient</artifactId>
+            <version>[3.0,4.0)</version>
+            <scope>provided</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>junit</groupId>
+                    <artifactId>junit</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>com.collabnet.contrib</groupId>
+            <artifactId>httpclient-contrib-ssl</artifactId>
+            <version>1.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.collabnet.ce.soap50.webservices</groupId>
+            <artifactId>sf_soap50_sdk</artifactId>
+            <version>1.2</version>
+        </dependency>
+        <dependency>
+            <groupId>wsdl4j</groupId>
+            <artifactId>wsdl4j</artifactId>
+            <version>1.6.2</version>
+        </dependency>
+    </dependencies>
+
+    <scm>
+        <connection>scm:git:ssh://github.com/jenkinsci/collabnet-uc4-deploy-plugin.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com:jenkinsci/collabnet-uc4-deploy-plugin.git</developerConnection>
+        <url>https://github.com/jenkinsci/collabnet-uc4-deploy-plugin</url>
+    </scm>
+</project>
